@@ -9,8 +9,9 @@ Usage
 -----
 
 ::
+    from period_iterator import period_iterator
 
-    period = PeriodIterator('2020-02-01,2020-02-03', 'Asia/Bangkok')
+    period = period_iterator('2020-02-01,2020-02-03', 'Asia/Bangkok')
 
     while True:
         print(period.cursor.begin()) # Begin of day
