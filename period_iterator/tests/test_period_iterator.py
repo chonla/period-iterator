@@ -1,4 +1,5 @@
-from .. import period_iterator, period_cursor
+from ..period_iterator import period_iterator
+from ..period_cursor import period_cursor
 from libfaketime import fake_time
 from datetime import datetime
 import pytest
