@@ -1,14 +1,14 @@
 from datetime import datetime
 from dateutil import relativedelta
-from .period_timezone import PeriodTimezone
+from .period_timezone import period_timezone
 from pytz import timezone
 
-class PeriodCursor:
+class period_cursor:
     def __init__(self, timestamp, timezone_name):
         self.timezone_name = timezone_name
         self.timezone = timezone(timezone_name)
         self.now = datetime.now(self.timezone)
-        tzfmt = PeriodTimezone()
+        tzfmt = period_timezone()
         self.timezone_offset = tzfmt.format(self.now.strftime('%Z'))
 
         self.cursor = datetime.fromisoformat(timestamp)
@@ -24,7 +24,7 @@ class PeriodCursor:
         return self.comparableCursor
 
     def tomorrow(self):
-        return PeriodCursor((self.cursor + relativedelta.relativedelta(days=1)).strftime('%Y-%m-%dT%H:%M:%S{}'.format(self.timezone_offset)), self.timezone_name)
+        return period_cursor((self.cursor + relativedelta.relativedelta(days=1)).strftime('%Y-%m-%dT%H:%M:%S{}'.format(self.timezone_offset)), self.timezone_name)
 
     def begin(self):
         return self.cursor.strftime('%Y-%m-%dT00:00:00{}'.format(self.timezone_offset))
