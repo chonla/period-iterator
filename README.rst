@@ -15,7 +15,7 @@ Usage
     while True:
         print(period.cursor.begin()) # Begin of day
         print(period.cursor.end()) # End of day
-        if period.next():
+        if not period.next():
             break
 
 -------
