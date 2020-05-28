@@ -26,8 +26,12 @@ class period_cursor:
     def tomorrow(self):
         return period_cursor((self.cursor + relativedelta.relativedelta(days=1)).strftime('%Y-%m-%dT%H:%M:%S{}'.format(self.timezone_offset)), self.timezone_name)
 
-    def begin(self):
-        return self.cursor.strftime('%Y-%m-%dT00:00:00{}'.format(self.timezone_offset))
+    def begin(self, format='default'):
+        if format=='default':
+            return self.cursor.strftime('%Y-%m-%dT00:00:00{}'.format(self.timezone_offset))
+        return datetime.fromisoformat(self.cursor.strftime('%Y-%m-%dT00:00:00{}'.format(self.timezone_offset))).strftime(format)
 
-    def end(self):
-        return self.cursor.strftime('%Y-%m-%dT23:59:59{}'.format(self.timezone_offset))
+    def end(self, format='default'):
+        if format=='default':
+            return self.cursor.strftime('%Y-%m-%dT23:59:59{}'.format(self.timezone_offset))
+        return datetime.fromisoformat(self.cursor.strftime('%Y-%m-%dT23:59:59{}'.format(self.timezone_offset))).strftime(format)

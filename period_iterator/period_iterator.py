@@ -84,3 +84,13 @@ class period_iterator:
             return False
         self.cursor = self.cursor.tomorrow()
         return True
+
+    def begin(self, format='default'):
+        if format=='default':
+            return self.start
+        return datetime.fromisoformat(self.start).strftime(format)
+
+    def end(self, format='default'):
+        if format=='default':
+            return self.end
+        return datetime.fromisoformat(self.end).strftime(format)
