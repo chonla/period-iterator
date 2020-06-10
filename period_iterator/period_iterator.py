@@ -66,13 +66,14 @@ class period_iterator:
             start_token = period_iterator(start, timezone_name)
             end_token = period_iterator(end, timezone_name)
             self.start = start_token.start
-            self.stop = end_token.end
+            self.stop = end_token.stop
         elif re.match(r'^\d{4}-\d{2}-\d{2}$', period):
             self.start = '{d}T00:00:00{z}'.format(d = period, z=self.timezone_offset)
             self.stop = '{d}T23:59:59{z}'.format(d = period, z=self.timezone_offset)
         else:
             self.start = period
             self.stop = period
+
         self.cursor_end = period_cursor(self.stop, timezone_name)
         self.reset()
 

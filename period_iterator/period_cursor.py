@@ -11,6 +11,7 @@ class period_cursor:
         tzfmt = period_timezone()
         self.timezone_offset = tzfmt.format(self.now.strftime('%Z'))
 
+        print('timestamp:{}'.format(timestamp))
         self.cursor = datetime.fromisoformat(timestamp)
         self.comparableCursor = self.cursor.strftime('%Y-%m-%d')
 

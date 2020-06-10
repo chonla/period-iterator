@@ -13,57 +13,57 @@ class test_period_iterator():
     def test_period_with_start_end(self, timezone_name):
         period = period_iterator('lastmonth,thismonth', timezone_name)
         assert period.start == '2019-12-01T00:00:00+07:00'
-        assert period.end == '2020-01-31T23:59:59+07:00'
+        assert period.stop == '2020-01-31T23:59:59+07:00'
     
     def test_period_with_single_timestamp(self, timezone_name):
         period = period_iterator('2019-12-31T00:00:00+07:00', timezone_name)
         assert period.start == '2019-12-31T00:00:00+07:00'
-        assert period.end == '2019-12-31T00:00:00+07:00'
+        assert period.stop == '2019-12-31T00:00:00+07:00'
 
     def test_period_with_single_timestamp_with_colon_in_timezone(self, timezone_name):
         period = period_iterator('2019-12-31T00:00:00+07:00', timezone_name)
         assert period.start == '2019-12-31T00:00:00+07:00'
-        assert period.end == '2019-12-31T00:00:00+07:00'
+        assert period.stop == '2019-12-31T00:00:00+07:00'
 
     def test_yesterday(self, timezone_name):
         period = period_iterator('yesterday', timezone_name)
         assert period.start == '2019-12-31T00:00:00+07:00'
-        assert period.end == '2019-12-31T23:59:59+07:00'
+        assert period.stop == '2019-12-31T23:59:59+07:00'
 
     def test_lastmonth(self, timezone_name):
         period = period_iterator('lastmonth', timezone_name)
         assert period.start == '2019-12-01T00:00:00+07:00'
-        assert period.end == '2019-12-31T23:59:59+07:00'
+        assert period.stop == '2019-12-31T23:59:59+07:00'
 
     def test_thismonth(self, timezone_name):
         period = period_iterator('thismonth', timezone_name)
         assert period.start == '2020-01-01T00:00:00+07:00'
-        assert period.end == '2020-01-31T23:59:59+07:00'
+        assert period.stop == '2020-01-31T23:59:59+07:00'
 
     def test_daybeforeyesterday(self, timezone_name):
         period = period_iterator('daybeforeyesterday', timezone_name)
         assert period.start == '2019-12-30T00:00:00+07:00'
-        assert period.end == '2019-12-30T23:59:59+07:00'
+        assert period.stop == '2019-12-30T23:59:59+07:00'
 
     def test_today(self, timezone_name):
         period = period_iterator('today', timezone_name)
         assert period.start == '2020-01-01T00:00:00+07:00'
-        assert period.end == '2020-01-01T23:59:59+07:00'
+        assert period.stop == '2020-01-01T23:59:59+07:00'
 
     def test_lasthour(self, timezone_name):
         period = period_iterator('lasthour', timezone_name)
         assert period.start == '2019-12-31T23:00:00+07:00'
-        assert period.end == '2019-12-31T23:59:59+07:00'
+        assert period.stop == '2019-12-31T23:59:59+07:00'
 
     def test_lastonequarterhour(self, timezone_name):
         period = period_iterator('lastonequarterhour', timezone_name)
         assert period.start == '2019-12-31T23:45:00+07:00'
-        assert period.end == '2019-12-31T23:59:59+07:00'
+        assert period.stop == '2019-12-31T23:59:59+07:00'
 
     def test_dateonly(self, timezone_name):
         period = period_iterator('2020-02-01', timezone_name)
         assert period.start == '2020-02-01T00:00:00+07:00'
-        assert period.end == '2020-02-01T23:59:59+07:00'
+        assert period.stop == '2020-02-01T23:59:59+07:00'
 
     def test_cursor_initialize(self, timezone_name):
         period = period_iterator('2020-02-01', timezone_name)
