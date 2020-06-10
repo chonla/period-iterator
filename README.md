@@ -5,7 +5,7 @@ Period Iterator is a library easing you to iterate through given period.
 ## Usage
 
 ```
-from period_iterator import period_iterator
+from period_iterator.period_iterator import period_iterator
 
 period = period_iterator('2020-02-01,2020-02-03', 'Asia/Bangkok')
 
