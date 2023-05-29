@@ -12,16 +12,16 @@ class period_cursor:
         self.timezone_offset = tzfmt.format(self.now.strftime('%Z'))
 
         self.cursor = datetime.fromisoformat(timestamp)
-        self.comparableCursor = self.cursor.strftime('%Y-%m-%d')
+        self.comparable_cursor = self.cursor.strftime('%Y-%m-%d')
 
     def __ge__(self, other):
-        return self.comparableCursor >= other.comparableCursor
+        return self.comparable_cursor >= other.comparable_cursor
 
     def __eq__(self, other):
-        return self.comparableCursor == other.comparableCursor
+        return self.comparable_cursor == other.comparable_cursor
 
     def __repr__(self):
-        return self.comparableCursor
+        return self.comparable_cursor
 
     def tomorrow(self):
         return period_cursor((self.cursor + relativedelta.relativedelta(days=1)).strftime('%Y-%m-%dT%H:%M:%S{}'.format(self.timezone_offset)), self.timezone_name)
@@ -35,3 +35,6 @@ class period_cursor:
         if format=='default':
             return self.cursor.strftime('%Y-%m-%dT23:59:59{}'.format(self.timezone_offset))
         return datetime.fromisoformat(self.cursor.strftime('%Y-%m-%dT23:59:59{}'.format(self.timezone_offset))).strftime(format)
+
+    def date(self):
+        return self.cursor.strftime('%Y-%m-%d')

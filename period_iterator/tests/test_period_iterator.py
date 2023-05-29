@@ -1,14 +1,13 @@
 from ..period_iterator import period_iterator
 from ..period_cursor import period_cursor
-from libfaketime import fake_time
-from datetime import datetime
+from freezegun import freeze_time
 import pytest
 
 @pytest.fixture()
 def timezone_name():
     yield 'Asia/Bangkok'
 
-@fake_time('2019-12-31 17:00:00', tz_offset=7) # It is 2020-01-01T00:00:00+0700
+@freeze_time('2019-12-31 17:00:00', tz_offset=7) # It is 2020-01-01T00:00:00+0700
 class test_period_iterator():
     def test_period_with_start_end(self, timezone_name):
         period = period_iterator('lastmonth,thismonth', timezone_name)

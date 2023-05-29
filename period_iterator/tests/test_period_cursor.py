@@ -21,3 +21,15 @@ class test_period_cursor():
         cursor = period_cursor('2020-03-04T12:34:56+07:00', 'Asia/Bangkok')
         tomorrow_cursor = period_cursor('2020-03-05T12:34:56+07:00', 'Asia/Bangkok')
         assert cursor.tomorrow() == tomorrow_cursor
+
+    def test_date(self):
+        cursor = period_cursor('2020-03-04T12:34:56+07:00', 'Asia/Bangkok')
+        assert cursor.date() == '2020-03-04'
+
+    def test_tomorrow_date(self):
+        cursor = period_cursor('2020-03-04T12:34:56+07:00', 'Asia/Bangkok')
+        assert cursor.tomorrow().date() == '2020-03-05'
+
+    def test_day_after_tomorrow_date(self):
+        cursor = period_cursor('2020-03-30T12:34:56+07:00', 'Asia/Bangkok')
+        assert cursor.tomorrow().tomorrow().date() == '2020-04-01'

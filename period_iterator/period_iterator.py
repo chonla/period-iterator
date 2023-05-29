@@ -9,9 +9,10 @@ class period_iterator:
     def __init__(self, period, timezone_name):
         self.timezone_name = timezone_name
         self.timezone = timezone(timezone_name)
-        self.now = datetime.now(self.timezone)
+
+        self.now = datetime.now()
         tzfmt = period_timezone()
-        self.timezone_offset = tzfmt.format(self.now.strftime('%Z'))
+        self.timezone_offset = tzfmt.format(datetime.now(self.timezone).strftime('%Z'))
 
         if period == 'lastonequarterhour':
             offset_from_15 = self.now.minute % 15
